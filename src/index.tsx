@@ -10,9 +10,9 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <ThemeProvider theme={darkTheme}>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/todolist" element={<App />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
