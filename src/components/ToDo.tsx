@@ -40,22 +40,6 @@ function ToDo({ text, category, id }: IToDo) {
       <button name="Delete" onClick={onClick}>
         Delete
       </button>
-      {/* {category !== Categories.DOING && (
-        // name에서 오류가 나는 이유. enum의 값은 숫자다.
-        <button name={Categories.DOING} onClick={onClick}>
-          Doing
-        </button>
-      )}
-      {category !== Categories.TO_DO && (
-        <button name={Categories.TO_DO} onClick={onClick}>
-          To Do
-        </button>
-      )}
-      {category !== Categories.DONE && (
-        <button name={Categories.DONE} onClick={onClick}>
-          Done
-        </button>
-      )} */}
     </li>
   );
 }

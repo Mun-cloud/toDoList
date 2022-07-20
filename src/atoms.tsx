@@ -9,7 +9,7 @@ export interface IToDo {
 // 카테고리 목록
 export const categoryList = atom({
   key: "categoryList",
-  default: ["TO_DO", "DOING", "DONE", "HAHA"],
+  default: ["TO_DO", "DOING", "DONE"],
 });
 
 // 카테고리 선택된 옵션값
