@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, AtomEffect, selector } from "recoil";
 
 export interface IToDo {
   text: string;
@@ -6,10 +6,27 @@ export interface IToDo {
   category: string;
 }
 
+// 로컬 스토리지 저장
+const localStorageEffect: <T>(key: string) => AtomEffect<T> =
+  (key: string) =>
+  ({ setSelf, onSet }) => {
+    const savedValue = localStorage.getItem(key);
+    if (savedValue != null) {
+      setSelf(JSON.parse(savedValue));
+    }
+
+    onSet((newValue, _, isReset) => {
+      isReset
+        ? localStorage.removeItem(key)
+        : localStorage.setItem(key, JSON.stringify(newValue));
+    });
+  };
+
 // 카테고리 목록
 export const categoryList = atom({
   key: "categoryList",
   default: ["TO_DO", "DOING", "DONE"],
+  effects: [localStorageEffect("localCategories")],
 });
 
 // 카테고리 선택된 옵션값
@@ -22,6 +39,7 @@ export const selectedCategory = atom({
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [],
+  effects: [localStorageEffect("localToDos")],
 });
 
 export const toDoSelector = selector({
